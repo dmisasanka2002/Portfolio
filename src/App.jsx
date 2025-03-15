@@ -82,13 +82,13 @@ const App = () => {
         (response) => {
           setLoading(false);
           // message.success("Message sent successfully!");
-          console.log("Message sent successfully!")
+          console.log("Message sent successfully!");
           form.resetFields(); // Reset the form fields
         },
         (error) => {
           setLoading(false);
           // message.error("Failed to send message. Please try again.");
-          console.log(error)
+          console.log(error);
         }
       );
   };
@@ -400,9 +400,13 @@ const App = () => {
                   size="large"
                   shape="round"
                   icon={<DownloadOutlined />}
+                  href="https://drive.google.com/file/d/1yGjkteuQgKs9mxtqVs7_d6RcDlYRcHGV/view?usp=drive_link" // Replace with your actual file link
+                  target="_blank" // Opens the link in a new tab
+                  rel="noopener noreferrer" // Security best practice
                 >
                   Download CV
                 </Button>
+
                 <Button
                   size="large"
                   shape="round"
@@ -1151,5 +1155,4 @@ const App = () => {
 
 export default App;
 
-
-// 
+//
