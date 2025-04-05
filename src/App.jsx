@@ -4,13 +4,11 @@ import {
   theme,
   Button,
   Layout,
-  Menu,
   Typography,
   Form,
   Input,
   Card,
   Modal,
-  List,
   Divider,
   Row,
   Col,
@@ -27,27 +25,25 @@ import { Link } from "react-scroll";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 import {
-  HomeOutlined,
-  UserOutlined,
-  ToolOutlined,
   ProjectOutlined,
   MailOutlined,
-  BulbOutlined,
   GithubOutlined,
   LinkedinOutlined,
   TwitterOutlined,
   SendOutlined,
   DownloadOutlined,
   ArrowRightOutlined,
-  CodeOutlined,
-  RobotOutlined,
-  ExperimentOutlined,
-  AntDesignOutlined,
 } from "@ant-design/icons";
 import emailjs from "@emailjs/browser";
 // import ModelLoader from "./threejs/ModelLoader";
 
-const { Header, Content, Footer } = Layout;
+import { projectsData } from "./data/projects";
+import { skillsData } from "./data/skills";
+import ResponsiveHeader from "./components/ResponsiveHeader";
+import AnimatedHeroSection from "./components/AnimatedHeroSection";
+import AboutSection from "./components/AboutSection";
+
+const { Content, Footer } = Layout;
 const { Title, Paragraph, Text } = Typography;
 const { TextArea } = Input;
 
@@ -134,190 +130,17 @@ const App = () => {
     },
   };
 
-  const skillsData = [
-    {
-      title: "Programming",
-      description: "JavaScript, Python, C++, Java",
-      icon: <CodeOutlined />,
-      color: "#1890ff",
-      proficiency: 90,
-    },
-    {
-      title: "AI & Machine Learning",
-      description: "TensorFlow, PyTorch, Scikit-learn, Neural Networks",
-      icon: <RobotOutlined />,
-      color: "#52c41a",
-      proficiency: 85,
-    },
-    {
-      title: "3D Modeling",
-      description: "AutoCAD, SolidWorks, Fusion 360, Blender",
-      icon: <AntDesignOutlined />,
-      color: "#722ed1",
-      proficiency: 95,
-    },
-    {
-      title: "Engineering Analysis",
-      description: "FEA, CFD, Thermal Analysis, MATLAB",
-      icon: <ExperimentOutlined />,
-      color: "#eb2f96",
-      proficiency: 88,
-    },
-  ];
-
-  const projectsData = [
-    {
-      title: "AI-Based Predictive Maintenance",
-      description:
-        "Developed an AI system that predicts equipment failures before they occur, reducing downtime by 30%.",
-      tags: ["AI", "Python", "TensorFlow", "Industrial IoT"],
-      highlight: true,
-    },
-    {
-      title: "Deep Learning Model for Image Recognition",
-      description:
-        "Created a custom CNN architecture for identifying defects in manufactured parts with 98% accuracy.",
-      tags: ["Deep Learning", "Computer Vision", "PyTorch", "Manufacturing"],
-      highlight: false,
-    },
-    {
-      title: "3D CAD Model Simulations",
-      description:
-        "Implemented physics-based simulations for mechanical components under various stress conditions.",
-      tags: ["SolidWorks", "FEA", "Mechanical Design", "Physics Simulation"],
-      highlight: false,
-    },
-    {
-      title: "Robotics Control System",
-      description:
-        "Designed and implemented a control system for a 6-axis robotic arm using ROS and custom algorithms.",
-      tags: ["Robotics", "ROS", "C++", "Control Systems"],
-      highlight: true,
-    },
-  ];
-
-  const testimonials = [
-    {
-      content:
-        "An exceptional engineer who combines mechanical knowledge with cutting-edge AI solutions. The predictive maintenance system they developed saved our company millions in downtime costs.",
-      author: "Engineering Director, Manufacturing Company",
-    },
-    {
-      content:
-        "Innovative problem solver with deep technical expertise. Their work on our robotics control system exceeded all expectations and accelerated our product development timeline.",
-      author: "CTO, Robotics Startup",
-    },
-    {
-      content:
-        "Remarkable ability to translate complex engineering concepts into practical solutions. Their 3D modeling skills and simulation expertise were invaluable to our project.",
-      author: "Project Manager, Aerospace Firm",
-    },
-  ];
-
   return (
     <ConfigProvider theme={themeConfig}>
       <Layout className={darkMode ? "dark-mode" : "light-mode"}>
-        {/* Navigation */}
-        <Header
-          style={{
-            position: "fixed",
-            top: 0,
-            zIndex: 10,
-            width: "100%",
-            padding: "0 24px",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-            boxShadow:
-              scrollPosition > 100 ? "0 2px 8px rgba(0, 0, 0, 0.15)" : "none",
-            transition: "box-shadow 0.3s ease",
-            backgroundColor: darkMode
-              ? "rgba(0, 0, 0, 0.85)"
-              : "rgba(255, 255, 255, 0.95)",
-            backdropFilter: "blur(8px)",
-          }}
-        >
-          <Typography.Title
-            level={3}
-            style={{ color: darkMode ? "white" : "black", margin: 0 }}
-          >
-            <span
-              style={{
-                background: "linear-gradient(90deg, #1890ff, #722ed1)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-              }}
-            >
-              Ishan Sasanka
-            </span>
-          </Typography.Title>
-          <Menu
-            mode="horizontal"
-            style={{
-              flex: 1,
-              justifyContent: "center",
-              backgroundColor: "transparent",
-              border: "none",
-            }}
-            selectedKeys={[activeSection]}
-            items={[
-              {
-                key: "home",
-                icon: <HomeOutlined />,
-                label: (
-                  <Link to="home" smooth duration={500}>
-                    Home
-                  </Link>
-                ),
-              },
-              {
-                key: "about",
-                icon: <UserOutlined />,
-                label: (
-                  <Link to="about" smooth duration={500}>
-                    About
-                  </Link>
-                ),
-              },
-              {
-                key: "skills",
-                icon: <ToolOutlined />,
-                label: (
-                  <Link to="skills" smooth duration={500}>
-                    Skills
-                  </Link>
-                ),
-              },
-              {
-                key: "projects",
-                icon: <ProjectOutlined />,
-                label: (
-                  <Link to="projects" smooth duration={500}>
-                    Projects
-                  </Link>
-                ),
-              },
-              {
-                key: "contact",
-                icon: <MailOutlined />,
-                label: (
-                  <Link to="contact" smooth duration={500}>
-                    Contact
-                  </Link>
-                ),
-              },
-            ]}
-          />
-          <Button
-            type="primary"
-            shape="round"
-            onClick={() => setDarkMode(!darkMode)}
-            icon={<BulbOutlined />}
-            style={{ boxShadow: "0 2px 8px rgba(0, 0, 0, 0.15)" }}
-          >
-            {darkMode ? "Light" : "Dark"}
-          </Button>
-        </Header>
+        {/* Navigation Bar */}
+        <ResponsiveHeader
+          darkMode={darkMode}
+          setDarkMode={setDarkMode}
+          activeSection={activeSection}
+          scrollPosition={scrollPosition}
+          setScrollPosition={setScrollPosition}
+        />
 
         <Content>
           {/* Home Section */}
@@ -352,72 +175,8 @@ const App = () => {
               </Canvas>
             </div>
 
-            <div style={{ zIndex: 2, textAlign: "center", maxWidth: "800px" }}>
-              <Badge.Ribbon text="Undergraduate" color="#1890ff">
-                <Title
-                  level={1}
-                  style={{
-                    fontSize: "3.5rem",
-                    marginBottom: "1rem",
-                    textShadow: darkMode
-                      ? "0 0 10px rgba(24, 144, 255, 0.5)"
-                      : "none",
-                  }}
-                >
-                  Hi, I'm{" "}
-                  <span style={{ color: "#1890ff" }}>Ishan Sasanka</span>
-                </Title>
-              </Badge.Ribbon>
-              <Title
-                level={2}
-                style={{
-                  marginTop: 0,
-                  marginBottom: "2rem",
-                  fontWeight: 400,
-                  color: darkMode
-                    ? "rgba(255, 255, 255, 0.85)"
-                    : "rgba(0, 0, 0, 0.85)",
-                }}
-              >
-                Mechanical Engineer & AI Specialist
-              </Title>
-              <Paragraph
-                style={{
-                  fontSize: "1.2rem",
-                  margin: "20px 0 40px",
-                  color: darkMode
-                    ? "rgba(255, 255, 255, 0.65)"
-                    : "rgba(0, 0, 0, 0.65)",
-                }}
-              >
-                Combining traditional engineering principles with cutting-edge
-                technology to create innovative solutions for complex problems.
-              </Paragraph>
-
-              <Space size="large">
-                <Button
-                  type="primary"
-                  size="large"
-                  shape="round"
-                  icon={<DownloadOutlined />}
-                  href="https://drive.google.com/file/d/1yGjkteuQgKs9mxtqVs7_d6RcDlYRcHGV/view?usp=drive_link" // Replace with your actual file link
-                  target="_blank" // Opens the link in a new tab
-                  rel="noopener noreferrer" // Security best practice
-                >
-                  Download CV
-                </Button>
-
-                <Button
-                  size="large"
-                  shape="round"
-                  icon={<ArrowRightOutlined />}
-                >
-                  <Link to="projects" smooth duration={500}>
-                    View Projects
-                  </Link>
-                </Button>
-              </Space>
-            </div>
+            {/* Hero Section */}
+            <AnimatedHeroSection darkMode={darkMode} />
 
             <div
               style={{
@@ -452,172 +211,8 @@ const App = () => {
               backgroundColor: darkMode ? "#141414" : "#f7f9fc",
             }}
           >
-            <Row justify="center" gutter={[32, 32]}>
-              <Col xs={24} lg={8}>
-                <div style={{ textAlign: "center" }}>
-                  <Avatar
-                    size={240}
-                    src="ishan.jpg"
-                    style={{
-                      border: "4px solid #1890ff",
-                      boxShadow: "0 12px 24px rgba(0, 0, 0, 0.15)",
-                    }}
-                  />
-                  <div style={{ marginTop: "24px" }}>
-                    <Space>
-                      <Tooltip title="GitHub">
-                        <Button
-                          shape="circle"
-                          icon={<GithubOutlined />}
-                          size="large"
-                          onClick={() =>
-                            window.open(
-                              "https://github.com/dmisasanka2002",
-                              "_blank"
-                            )
-                          }
-                        />
-                      </Tooltip>
-                      <Tooltip title="LinkedIn">
-                        <Button
-                          shape="circle"
-                          icon={<LinkedinOutlined />}
-                          size="large"
-                          onClick={() =>
-                            window.open(
-                              "https://www.linkedin.com/in/ishan-sasanka-a2b4872ab",
-                              "_blank"
-                            )
-                          }
-                        />
-                      </Tooltip>
-                      {/* <Tooltip title="Twitter">
-                        <Button
-                          shape="circle"
-                          icon={<TwitterOutlined />}
-                          size="large"
-                          onClick={() =>
-                            window.open(
-                              "https://twitter.com/your-username",
-                              "_blank"
-                            )
-                          } 
-                        />
-                      </Tooltip> */}
-                    </Space>
-                  </div>
-                </div>
-              </Col>
-
-              <Col xs={24} lg={16}>
-                <div>
-                  <Title
-                    level={4}
-                    style={{ color: "#1890ff", margin: "0 0 8px 0" }}
-                  >
-                    WHO I AM
-                  </Title>
-                  <Title level={2}>About Me</Title>
-                  <Divider
-                    style={{ marginTop: "16px", marginBottom: "24px" }}
-                  />
-
-                  <Paragraph style={{ fontSize: "16px", lineHeight: "1.8" }}>
-                    I'm a Mechanical Engineering undergraduate with a strong
-                    passion for designing, analyzing, and optimizing mechanical
-                    systems. My interest lies at the intersection of traditional
-                    engineering and modern digital technologies.
-                  </Paragraph>
-
-                  <Paragraph style={{ fontSize: "16px", lineHeight: "1.8" }}>
-                    Alongside my foundation in mechanical engineering, I have
-                    developed skills in programming, AI, and machine learning. I
-                    actively explore how these technologies can be integrated
-                    into engineering workflows to enhance efficiency and
-                    innovation.
-                  </Paragraph>
-
-                  <Paragraph style={{ fontSize: "16px", lineHeight: "1.8" }}>
-                    I approach problem-solving with a blend of analytical
-                    thinking and creativity, aiming to bridge the gap between
-                    physical systems and digital solutions. I'm always eager to
-                    learn new technologies and methodologies to expand my
-                    engineering capabilities.
-                  </Paragraph>
-
-                  {/* <Row gutter={[16, 16]} style={{ marginTop: "32px" }}>
-                    <Col xs={12} sm={6}>
-                      <Card
-                        variant={false}
-                        style={{
-                          textAlign: "center",
-                          backgroundColor: darkMode ? "#1f1f1f" : "#f0f5ff",
-                        }}
-                      >
-                        <Title
-                          level={2}
-                          style={{ margin: 0, color: "#1890ff" }}
-                        >
-                          7+
-                        </Title>
-                        <Text strong>Years Experience</Text>
-                      </Card>
-                    </Col>
-                    <Col xs={12} sm={6}>
-                      <Card
-                        variant={false}
-                        style={{
-                          textAlign: "center",
-                          backgroundColor: darkMode ? "#1f1f1f" : "#f0f5ff",
-                        }}
-                      >
-                        <Title
-                          level={2}
-                          style={{ margin: 0, color: "#1890ff" }}
-                        >
-                          20+
-                        </Title>
-                        <Text strong>Projects</Text>
-                      </Card>
-                    </Col>
-                    <Col xs={12} sm={6}>
-                      <Card
-                        variant={false}
-                        style={{
-                          textAlign: "center",
-                          backgroundColor: darkMode ? "#1f1f1f" : "#f0f5ff",
-                        }}
-                      >
-                        <Title
-                          level={2}
-                          style={{ margin: 0, color: "#1890ff" }}
-                        >
-                          15+
-                        </Title>
-                        <Text strong>Happy Clients</Text>
-                      </Card>
-                    </Col>
-                    <Col xs={12} sm={6}>
-                      <Card
-                        variant={false}
-                        style={{
-                          textAlign: "center",
-                          backgroundColor: darkMode ? "#1f1f1f" : "#f0f5ff",
-                        }}
-                      >
-                        <Title
-                          level={2}
-                          style={{ margin: 0, color: "#1890ff" }}
-                        >
-                          5+
-                        </Title>
-                        <Text strong>Publications</Text>
-                      </Card>
-                    </Col>
-                  </Row> */}
-                </div>
-              </Col>
-            </Row>
+            <AboutSection darkMode={darkMode} />
+            
           </section>
 
           {/* Skills Section */}
@@ -1146,6 +741,14 @@ const App = () => {
                 </Tag>
               ))}
             </div>
+            <Tooltip title="View on GitHub">
+              <Button
+                shape="circle"
+                icon={<GithubOutlined />}
+                size="large"
+                onClick={() => window.open(selectedProject.link, "_blank")}
+              />
+            </Tooltip>
           </Modal>
         )}
       </Layout>
