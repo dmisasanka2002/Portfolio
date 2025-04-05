@@ -212,7 +212,6 @@ const App = () => {
             }}
           >
             <AboutSection darkMode={darkMode} />
-            
           </section>
 
           {/* Skills Section */}
@@ -415,11 +414,33 @@ const App = () => {
                               </Tag>
                             ))}
                           </div>
-                          <div style={{ marginTop: "16px" }}>
+                          <div style={{ marginTop: 16, textAlign: "center" }}>
                             <Button
                               type="primary"
                               icon={<ArrowRightOutlined />}
                               onClick={() => setSelectedProject(project)}
+                              size="large"
+                              shape="round"
+                              style={{
+                                background:
+                                  "linear-gradient(90deg, #1890ff, #722ed1)",
+                                color: "white",
+                                border: "none",
+                                boxShadow: "0 5px 15px rgba(24, 144, 255, 0.4)",
+                                padding: "0 20px",
+                                height: "40px",
+                                fontWeight: "500",
+                                fontSize: "16px",
+                                transition: "all 0.3s ease",
+                              }}
+                              onMouseEnter={(e) => {
+                                e.currentTarget.style.transform =
+                                  "translateY(-2px)";
+                              }}
+                              onMouseLeave={(e) => {
+                                e.currentTarget.style.transform =
+                                  "translateY(0)";
+                              }}
                             >
                               View Details
                             </Button>
@@ -644,6 +665,25 @@ const App = () => {
                             size="large"
                             block
                             icon={<SendOutlined />}
+                            style={{
+                              background:
+                                "linear-gradient(90deg, #1890ff, #722ed1)",
+                              color: "white",
+                              border: "none",
+                              boxShadow: "0 5px 15px rgba(24, 144, 255, 0.4)",
+                              transition: "all 0.3s ease",
+                            }}
+                            onMouseEnter={(e) => {
+                              e.currentTarget.style.transform =
+                                "translateY(-2px)";
+                              e.currentTarget.style.boxShadow =
+                                "0 8px 20px rgba(114, 46, 209, 0.5)";
+                            }}
+                            onMouseLeave={(e) => {
+                              e.currentTarget.style.transform = "translateY(0)";
+                              e.currentTarget.style.boxShadow =
+                                "0 5px 15px rgba(24, 144, 255, 0.4)";
+                            }}
                           >
                             Send Message
                           </Button>
@@ -728,27 +768,70 @@ const App = () => {
 
         {selectedProject && (
           <Modal
-            title={selectedProject.title}
+            title={
+              <span
+                style={{ fontSize: "24px", fontWeight: 600, color: "#722ed1" }}
+              >
+                {selectedProject.title}
+              </span>
+            }
             open={!!selectedProject}
             onCancel={() => setSelectedProject(null)}
             footer={null}
+            centered
+            bodyStyle={{ padding: "24px", borderRadius: "8px" }}
           >
-            <Paragraph>{selectedProject.description}</Paragraph>
-            <div style={{ marginTop: "16px" }}>
+            <Paragraph
+              style={{ fontSize: "16px", color: "#595959", lineHeight: 1.6 }}
+            >
+              {selectedProject.description}
+            </Paragraph>
+
+            <div
+              style={{
+                marginTop: 24,
+                display: "flex",
+                flexWrap: "wrap",
+                gap: 8,
+              }}
+            >
               {selectedProject.tags.map((tag, tagIndex) => (
-                <Tag key={tagIndex} color="blue">
+                <Tag
+                  key={tagIndex}
+                  color="geekblue"
+                  style={{
+                    fontSize: "14px",
+                    padding: "4px 12px",
+                    borderRadius: "16px",
+                  }}
+                >
                   {tag}
                 </Tag>
               ))}
             </div>
-            <Tooltip title="View on GitHub">
-              <Button
-                shape="circle"
-                icon={<GithubOutlined />}
-                size="large"
-                onClick={() => window.open(selectedProject.link, "_blank")}
-              />
-            </Tooltip>
+
+            <div style={{ marginTop: 32, textAlign: "right" }}>
+              <Tooltip title="View on GitHub">
+                <Button
+                  shape="circle"
+                  size="large"
+                  icon={<GithubOutlined />}
+                  style={{
+                    background: "#24292e",
+                    color: "white",
+                    boxShadow: "0 4px 12px rgba(0, 0, 0, 0.2)",
+                    transition: "all 0.3s ease",
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = "scale(1.1)";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = "scale(1)";
+                  }}
+                  onClick={() => window.open(selectedProject.link, "_blank")}
+                />
+              </Tooltip>
+            </div>
           </Modal>
         )}
       </Layout>
