@@ -85,7 +85,7 @@ const AnimatedHeroSection = ({ darkMode }) => {
                 ? "0 0 10px rgba(114, 46, 209, 0.6)"
                 : "none",
               padding: "15px 15px 5px 15px",
-              background: darkMode ? "rgba(0, 0, 0, 0.3)" : "rgba(255, 255, 255, 0.7)",
+              background: darkMode ? "rgba(0, 0, 0, 0.3)" : "",
               borderRadius: "12px",
               backdropFilter: "blur(5px)"
             }}

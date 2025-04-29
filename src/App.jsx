@@ -35,10 +35,11 @@ import {
   ArrowRightOutlined,
 } from "@ant-design/icons";
 import emailjs from "@emailjs/browser";
-// import ModelLoader from "./threejs/ModelLoader";
 
 import { projectsData } from "./data/projects";
 import { skillsData } from "./data/skills";
+import { testimonials } from "./data/testimonials";
+
 import ResponsiveHeader from "./components/ResponsiveHeader";
 import AnimatedHeroSection from "./components/AnimatedHeroSection";
 import AboutSection from "./components/AboutSection";
@@ -167,12 +168,6 @@ const App = () => {
                 zIndex: 1,
               }}
             >
-              <Canvas camera={{ position: [0, 1, 3] }}>
-                <ambientLight intensity={0.5} />
-                <directionalLight position={[2, 2, 2]} />
-                {/* <ModelLoader /> */}
-                <OrbitControls enableZoom={true} />
-              </Canvas>
             </div>
 
             {/* Hero Section */}

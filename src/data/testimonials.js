@@ -1,4 +1,4 @@
-const testimonials = [
+export const testimonials = [
     {
       content:
         "An exceptional engineer who combines mechanical knowledge with cutting-edge AI solutions. The predictive maintenance system they developed saved our company millions in downtime costs.",
