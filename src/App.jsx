@@ -36,13 +36,12 @@ import {
 } from "@ant-design/icons";
 import emailjs from "@emailjs/browser";
 
-import { projectsData } from "./data/projects";
-import { skillsData } from "./data/skills";
-import { testimonials } from "./data/testimonials";
 
 import ResponsiveHeader from "./components/ResponsiveHeader";
 import AnimatedHeroSection from "./components/AnimatedHeroSection";
 import AboutSection from "./components/AboutSection";
+import SkillsSection from "./components/SkillsSection";
+import ProjectsSection from "./components/ProjectsSection";
 
 const { Content, Footer } = Layout;
 const { Title, Paragraph, Text } = Typography;
@@ -218,127 +217,7 @@ const App = () => {
               backgroundColor: darkMode ? "#1a1a1a" : "#ffffff",
             }}
           >
-            <Row justify="center">
-              <Col xs={24} md={20} lg={18}>
-                <div style={{ textAlign: "center", marginBottom: "48px" }}>
-                  <Title
-                    level={4}
-                    style={{ color: "#1890ff", margin: "0 0 8px 0" }}
-                  >
-                    MY EXPERTISE
-                  </Title>
-                  <Title level={2}>Skills & Proficiency</Title>
-                  <Divider />
-                </div>
-
-                <Row gutter={[24, 24]}>
-                  {skillsData.map((skill, index) => (
-                    <Col xs={24} md={12} key={index}>
-                      <Card
-                        variant={false}
-                        style={{
-                          boxShadow: "0 4px 12px rgba(0, 0, 0, 0.08)",
-                          height: "100%",
-                        }}
-                      >
-                        <div
-                          style={{
-                            display: "flex",
-                            alignItems: "center",
-                            marginBottom: "16px",
-                          }}
-                        >
-                          <div
-                            style={{
-                              backgroundColor: skill.color,
-                              width: "48px",
-                              height: "48px",
-                              borderRadius: "12px",
-                              display: "flex",
-                              justifyContent: "center",
-                              alignItems: "center",
-                              marginRight: "16px",
-                              fontSize: "24px",
-                              color: "#fff",
-                            }}
-                          >
-                            {skill.icon}
-                          </div>
-                          <Title level={4} style={{ margin: 0 }}>
-                            {skill.title}
-                          </Title>
-                        </div>
-
-                        <Paragraph>{skill.description}</Paragraph>
-
-                        <div style={{ marginTop: "16px" }}>
-                          <div
-                            style={{
-                              display: "flex",
-                              justifyContent: "space-between",
-                              marginBottom: "8px",
-                            }}
-                          >
-                            <Text strong>Proficiency</Text>
-                            <Text strong>{skill.proficiency}%</Text>
-                          </div>
-                          <Progress
-                            percent={skill.proficiency}
-                            showInfo={false}
-                            strokeColor={skill.color}
-                            trailColor={darkMode ? "#2d2d2d" : "#f0f0f0"}
-                          />
-                        </div>
-                      </Card>
-                    </Col>
-                  ))}
-                </Row>
-
-                {/* <div style={{ marginTop: "64px" }}>
-                  <div style={{ marginBottom: "32px", textAlign: "center" }}>
-                    <Title level={3}>What Others Say</Title>
-                    <Divider />
-                  </div>
-
-                  <Carousel autoplay>
-                    {testimonials.map((testimonial, index) => (
-                      <div key={index}>
-                        <Card
-                          variant={false}
-                          style={{
-                            maxWidth: "800px",
-                            margin: "0 auto",
-                            padding: "16px",
-                            boxShadow: "0 4px 12px rgba(0, 0, 0, 0.08)",
-                            backgroundColor: darkMode ? "#1f1f1f" : "#f9f9f9",
-                          }}
-                        >
-                          <div style={{ textAlign: "center", padding: "24px" }}>
-                            <div
-                              style={{
-                                fontSize: "48px",
-                                color: "#1890ff",
-                                marginBottom: "16px",
-                              }}
-                            >
-                              "
-                            </div>
-                            <Paragraph
-                              style={{ fontSize: "16px", fontStyle: "italic" }}
-                            >
-                              {testimonial.content}
-                            </Paragraph>
-                            <div style={{ marginTop: "16px" }}>
-                              <Text strong>{testimonial.author}</Text>
-                            </div>
-                          </div>
-                        </Card>
-                      </div>
-                    ))}
-                  </Carousel>
-                </div> */}
-              </Col>
-            </Row>
+            <SkillsSection darkMode={darkMode}/>
           </section>
 
           {/* Projects Section */}
@@ -350,103 +229,7 @@ const App = () => {
               backgroundColor: darkMode ? "#141414" : "#f7f9fc",
             }}
           >
-            <Row justify="center">
-              <Col xs={24} md={20} lg={18}>
-                <div style={{ textAlign: "center", marginBottom: "48px" }}>
-                  <Title
-                    level={4}
-                    style={{ color: "#1890ff", margin: "0 0 8px 0" }}
-                  >
-                    MY WORK
-                  </Title>
-                  <Title level={2}>Recent Projects</Title>
-                  <Divider />
-                </div>
-
-                <Row gutter={[24, 24]}>
-                  {projectsData.map((project, index) => (
-                    <Col xs={24} md={12} lg={12} key={index}>
-                      <Badge.Ribbon
-                        text="Featured"
-                        color="#1890ff"
-                        style={{
-                          display: project.highlight ? "block" : "none",
-                        }}
-                      >
-                        <Card
-                          hoverable
-                          cover={
-                            <div
-                              style={{
-                                height: "200px",
-                                background: `linear-gradient(135deg, ${
-                                  index % 2 === 0 ? "#1890ff" : "#722ed1"
-                                }, ${index % 3 === 0 ? "#52c41a" : "#eb2f96"})`,
-                                display: "flex",
-                                justifyContent: "center",
-                                alignItems: "center",
-                                fontSize: "80px",
-                                color: "rgba(255, 255, 255, 0.2)",
-                              }}
-                            >
-                              <ProjectOutlined />
-                            </div>
-                          }
-                          style={{
-                            height: "100%",
-                            boxShadow: "0 4px 12px rgba(0, 0, 0, 0.08)",
-                          }}
-                        >
-                          <Title level={4}>{project.title}</Title>
-                          <Paragraph>{project.description}</Paragraph>
-                          <div style={{ marginTop: "16px" }}>
-                            {project.tags.map((tag, tagIndex) => (
-                              <Tag
-                                key={tagIndex}
-                                style={{ marginBottom: "8px" }}
-                              >
-                                {tag}
-                              </Tag>
-                            ))}
-                          </div>
-                          <div style={{ marginTop: 16, textAlign: "center" }}>
-                            <Button
-                              type="primary"
-                              icon={<ArrowRightOutlined />}
-                              onClick={() => setSelectedProject(project)}
-                              size="large"
-                              shape="round"
-                              style={{
-                                background:
-                                  "linear-gradient(90deg, #1890ff, #722ed1)",
-                                color: "white",
-                                border: "none",
-                                boxShadow: "0 5px 15px rgba(24, 144, 255, 0.4)",
-                                padding: "0 20px",
-                                height: "40px",
-                                fontWeight: "500",
-                                fontSize: "16px",
-                                transition: "all 0.3s ease",
-                              }}
-                              onMouseEnter={(e) => {
-                                e.currentTarget.style.transform =
-                                  "translateY(-2px)";
-                              }}
-                              onMouseLeave={(e) => {
-                                e.currentTarget.style.transform =
-                                  "translateY(0)";
-                              }}
-                            >
-                              View Details
-                            </Button>
-                          </div>
-                        </Card>
-                      </Badge.Ribbon>
-                    </Col>
-                  ))}
-                </Row>
-              </Col>
-            </Row>
+            <ProjectsSection darkMode={darkMode} setSelectedProject={setSelectedProject}/>
           </section>
 
           {/* Contact Section */}

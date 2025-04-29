@@ -114,7 +114,7 @@ const ResponsiveHeader = ({ darkMode, setDarkMode, activeSection, scrollPosition
   return (
     <Header
       style={{
-        position: "fixed",
+        position: "sticky",
         top: 0,
         zIndex: 10,
         width: "100%",
