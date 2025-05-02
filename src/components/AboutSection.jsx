@@ -94,7 +94,6 @@ const AboutSection = ({ darkMode }) => {
     },
     hover: {
       scale: 1.05,
-      rotate: 5,
       boxShadow: darkMode 
         ? "0 20px 40px rgba(24, 144, 255, 0.4)" 
         : "0 20px 40px rgba(0, 0, 0, 0.2)",
@@ -291,7 +290,7 @@ const AboutSection = ({ darkMode }) => {
               </motion.div>
             ))}
 
-            <Row gutter={[16, 16]} style={{ marginTop: "32px" }}>
+            {/* <Row gutter={[16, 16]} style={{ marginTop: "32px" }}>
               {statsData.map((stat, index) => (
                 <Col xs={12} sm={6} key={index}>
                   <motion.div
@@ -346,7 +345,7 @@ const AboutSection = ({ darkMode }) => {
                   </motion.div>
                 </Col>
               ))}
-            </Row>
+            </Row> */}
           </motion.div>
         </Col>
       </Row>

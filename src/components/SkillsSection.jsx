@@ -283,11 +283,19 @@ const SkillsSection = ({ darkMode }) => {
 
             {/* Add custom styling for dots */}
             <style jsx="true">{`
-              .slick-dots li button {
+              .slick-dots {
+                z-index: 1 !important;
+              }
+              .slick-dots li {
                 width: 10px !important;
                 height: 10px !important;
                 border-radius: 50% !important;
                 background: ${darkMode ? "#555" : "#d9d9d9"} !important;
+              }
+              .slick-dots li button {
+                width: 10px !important;
+                height: 10px !important;
+                border-radius: 50% !important;
                 opacity: 0.7;
               }
               .slick-dots li.slick-active button {
@@ -362,3 +370,5 @@ const SkillsSection = ({ darkMode }) => {
 };
 
 export default SkillsSection;
+
+// ------------------------------------------------------------------------------------------

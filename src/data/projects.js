@@ -6,6 +6,7 @@ export const projectsData = [
       tags: ["AI", "Python", "TensorFlow", "Industrial IoT"],
       link: "",
       highlight: true,
+      category:"AI & Machine Learning",
     },
     {
       title: "Deep Learning Model for Image Recognition",
@@ -14,6 +15,7 @@ export const projectsData = [
       tags: ["Deep Learning", "Computer Vision", "PyTorch", "Manufacturing"],
       link: "",
       highlight: false,
+      category:"AI & Machine Learning",
     },
     {
       title: "3D CAD Model Simulations",
@@ -22,6 +24,7 @@ export const projectsData = [
       tags: ["SolidWorks", "FEA", "Mechanical Design", "Physics Simulation"],
       link: "",
       highlight: false,
+      category:"Mechanical Engineering",
     },
     {
       title: "Robotics Control System",
@@ -30,5 +33,6 @@ export const projectsData = [
       tags: ["Robotics", "ROS", "C++", "Control Systems"],
       link: "",
       highlight: true,
+      category:"Robotics",
     },
   ];

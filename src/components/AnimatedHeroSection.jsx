@@ -234,3 +234,5 @@ const AnimatedHeroSection = ({ darkMode }) => {
 };
 
 export default AnimatedHeroSection;
+
+// ---------------------------------------------------------------------------------------------------------------------
