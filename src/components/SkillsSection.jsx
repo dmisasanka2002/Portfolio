@@ -142,6 +142,7 @@ import {
   Typography,
   Carousel,
   Button,
+  Tag,
 } from "antd";
 import { LeftOutlined, RightOutlined } from "@ant-design/icons";
 import { motion } from "framer-motion";
@@ -234,7 +235,31 @@ const SkillsSection = ({ darkMode }) => {
           </Title>
         </div>
 
-        <Paragraph>{skill.description}</Paragraph>
+        {/* <Paragraph>{skill.description}</Paragraph> */}
+        {/* Modified Description View */}
+        <div
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            justifyContent: "center",
+            gap: "8px",
+            marginTop: "8px",
+          }}
+        >
+          {skill.description.split(", ").map((tag, idx) => (
+            <Tag
+              key={idx}
+              color="geekblue"
+              style={{
+                fontSize: "14px",
+                padding: "4px 12px",
+                borderRadius: "16px",
+              }}
+            >
+              {tag}
+            </Tag>
+          ))}
+        </div>
 
         <div style={{ marginTop: "16px" }}>
           <div

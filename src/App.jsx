@@ -48,7 +48,7 @@ const { Title, Paragraph, Text } = Typography;
 const { TextArea } = Input;
 
 const App = () => {
-  const [darkMode, setDarkMode] = useState(false);
+  const [darkMode, setDarkMode] = useState(true);
   const [form] = Form.useForm();
   const [scrollPosition, setScrollPosition] = useState(0);
   const [activeSection, setActiveSection] = useState("home");
