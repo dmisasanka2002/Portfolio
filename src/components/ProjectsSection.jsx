@@ -288,19 +288,27 @@ import {
   RightOutlined,
 } from "@ant-design/icons";
 import { motion, AnimatePresence } from "framer-motion";
+import useCSVDataLoader from "../hooks/useCSVDataLoader";
 
 const { Title, Paragraph } = Typography;
 
-import { projectsData } from "../data/projects";
+// import { projectsData } from "../data/projects";
 
 const ProjectsSection = ({ darkMode, setSelectedProject }) => {
+  // const [projectsData, setProjectsData] = useState({});
   const [currentPage, setCurrentPage] = useState(1);
   const [isMobile, setIsMobile] = useState(false);
   const [activeCategory, setActiveCategory] = useState("all");
   const projectsPerPage = 4;
 
+  const csvUrl =
+    "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ0OolWGTTvmGyuG__Uz927ukP6Pf_NDNSeZajeA_kajS9dEocLgl3NgCMwykoVROxCqrMz2SncYNOd/pub?output=csv";
+
+  const { csvData: projectsData, loading } = useCSVDataLoader(csvUrl);
+
+
   // Extract unique categories from projects data
-  const categories = ["all", ...new Set(projectsData.map(project => project.category))];
+  const categories = ["all", ...new Set((projectsData || []).map(project => project.category))];
 
   // Check window size on mount and resize
   useEffect(() => {
@@ -393,7 +401,7 @@ const ProjectsSection = ({ darkMode, setSelectedProject }) => {
           <Title level={4}>{project.title}</Title>
           <Paragraph>{project.description}</Paragraph>
           <div style={{ marginTop: "16px" }}>
-            {project.tags.map((tag, tagIndex) => (
+            {project.tags.split(',').map((tag, tagIndex) => (
               <Tag key={tagIndex} style={{ marginBottom: "8px" }}>
                 {tag}
               </Tag>

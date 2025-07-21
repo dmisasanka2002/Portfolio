@@ -164,7 +164,7 @@ const ResponsiveHeader = ({ darkMode, setDarkMode, activeSection, scrollPosition
           }}
           selectedKeys={[activeSection]}
           items={menuItems}
-          theme={darkMode ? "dark" : "light"}
+          // theme={darkMode ? "light" : "light"}
         />
       ) : null}
 
