@@ -1,14 +1,28 @@
-import React, { useEffect } from 'react';
-import { Row, Col, Avatar, Button, Tooltip, Typography, Divider, Card, Space } from 'antd';
-import { GithubOutlined, LinkedinOutlined, TwitterOutlined } from '@ant-design/icons';
-import { motion, useAnimation } from 'framer-motion';
-import { personalInfo, aboutText, statsData } from '../data/aboutdata';
+import React, { useEffect } from "react";
+import {
+  Row,
+  Col,
+  Avatar,
+  Button,
+  Tooltip,
+  Typography,
+  Divider,
+  Card,
+  Space,
+} from "antd";
+import {
+  GithubOutlined,
+  LinkedinOutlined,
+  TwitterOutlined,
+} from "@ant-design/icons";
+import { motion, useAnimation } from "framer-motion";
+import { personalInfo, aboutText, statsData } from "../data/aboutdata";
 
 const { Title, Paragraph, Text } = Typography;
 
 const AboutSection = ({ darkMode }) => {
   const controls = useAnimation();
-  
+
   useEffect(() => {
     controls.start("visible");
   }, [controls]);
@@ -21,9 +35,9 @@ const AboutSection = ({ darkMode }) => {
       transition: {
         staggerChildren: 0.15,
         delayChildren: 0.2,
-        when: "beforeChildren"
-      }
-    }
+        when: "beforeChildren",
+      },
+    },
   };
 
   const itemVariants = {
@@ -31,25 +45,25 @@ const AboutSection = ({ darkMode }) => {
     visible: {
       y: 0,
       opacity: 1,
-      transition: { 
-        type: 'spring', 
-        stiffness: 80, 
+      transition: {
+        type: "spring",
+        stiffness: 80,
         damping: 12,
-        mass: 1
-      }
-    }
+        mass: 1,
+      },
+    },
   };
 
   const fadeInVariants = {
     hidden: { opacity: 0 },
-    visible: i => ({
+    visible: (i) => ({
       opacity: 1,
-      transition: { 
-        delay: 0.3 + (i * 0.1),
+      transition: {
+        delay: 0.3 + i * 0.1,
         duration: 0.6,
-        ease: "easeOut"
-      }
-    })
+        ease: "easeOut",
+      },
+    }),
   };
 
   const statsVariants = {
@@ -59,24 +73,24 @@ const AboutSection = ({ darkMode }) => {
       opacity: 1,
       y: 0,
       transition: {
-        type: 'spring',
+        type: "spring",
         stiffness: 70,
         damping: 10,
-        delay: 0.7 + (i * 0.15)
-      }
+        delay: 0.7 + i * 0.15,
+      },
     }),
     hover: {
       y: -8,
       scale: 1.05,
-      boxShadow: darkMode 
-        ? "0 15px 30px rgba(24, 144, 255, 0.25)" 
+      boxShadow: darkMode
+        ? "0 15px 30px rgba(24, 144, 255, 0.25)"
         : "0 15px 30px rgba(0, 0, 0, 0.15)",
-      transition: { 
-        type: 'spring', 
-        stiffness: 200, 
-        damping: 15 
-      }
-    }
+      transition: {
+        type: "spring",
+        stiffness: 200,
+        damping: 15,
+      },
+    },
   };
 
   const avatarVariants = {
@@ -86,47 +100,47 @@ const AboutSection = ({ darkMode }) => {
       opacity: 1,
       rotate: 0,
       transition: {
-        type: 'spring',
+        type: "spring",
         stiffness: 60,
         damping: 13,
-        delay: 0.3
-      }
+        delay: 0.3,
+      },
     },
     hover: {
       scale: 1.05,
-      boxShadow: darkMode 
-        ? "0 20px 40px rgba(24, 144, 255, 0.4)" 
+      boxShadow: darkMode
+        ? "0 20px 40px rgba(24, 144, 255, 0.4)"
         : "0 20px 40px rgba(0, 0, 0, 0.2)",
-      transition: { 
-        type: 'spring', 
-        stiffness: 300, 
-        damping: 15 
-      }
-    }
+      transition: {
+        type: "spring",
+        stiffness: 300,
+        damping: 15,
+      },
+    },
   };
 
   const socialIconVariants = {
     hidden: { scale: 0, opacity: 0 },
-    visible: i => ({
+    visible: (i) => ({
       scale: 1,
       opacity: 1,
-      transition: { 
-        type: 'spring', 
-        stiffness: 260, 
+      transition: {
+        type: "spring",
+        stiffness: 260,
         damping: 20,
-        delay: 0.7 + (i * 0.1)
-      }
+        delay: 0.7 + i * 0.1,
+      },
     }),
     hover: {
       y: -8,
       scale: 1.2,
-      transition: { 
-        type: 'spring', 
-        stiffness: 400, 
-        damping: 10 
-      }
+      transition: {
+        type: "spring",
+        stiffness: 400,
+        damping: 10,
+      },
     },
-    tap: { scale: 0.9 }
+    tap: { scale: 0.9 },
   };
 
   const titleVariants = {
@@ -134,13 +148,13 @@ const AboutSection = ({ darkMode }) => {
     visible: {
       x: 0,
       opacity: 1,
-      transition: { 
-        type: 'spring', 
-        stiffness: 100, 
+      transition: {
+        type: "spring",
+        stiffness: 100,
         damping: 15,
-        delay: 0.5
-      }
-    }
+        delay: 0.5,
+      },
+    },
   };
 
   const subtitleVariants = {
@@ -148,13 +162,13 @@ const AboutSection = ({ darkMode }) => {
     visible: {
       y: 0,
       opacity: 1,
-      transition: { 
-        type: 'spring', 
-        stiffness: 60, 
+      transition: {
+        type: "spring",
+        stiffness: 60,
         damping: 12,
-        delay: 0.6
-      }
-    }
+        delay: 0.6,
+      },
+    },
   };
 
   const dividerVariants = {
@@ -162,12 +176,12 @@ const AboutSection = ({ darkMode }) => {
     visible: {
       width: "100%",
       opacity: 1,
-      transition: { 
-        duration: 0.8, 
+      transition: {
+        duration: 0.8,
         ease: "easeOut",
-        delay: 0.7
-      }
-    }
+        delay: 0.7,
+      },
+    },
   };
 
   return (
@@ -180,31 +194,27 @@ const AboutSection = ({ darkMode }) => {
       <Row justify="center" gutter={[32, 32]}>
         {/* Avatar & Social Media Column */}
         <Col xs={24} lg={8}>
-          <motion.div 
-            style={{ textAlign: "center" }}
-            variants={itemVariants}
-          >
+          <motion.div style={{ textAlign: "center" }} variants={itemVariants}>
             <motion.div
-              variants={avatarVariants}
               whileHover="hover"
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
             >
               <Avatar
                 size={240}
                 src={personalInfo.avatar}
                 style={{
                   border: `4px solid ${darkMode ? "#1890ff" : "#1890ff"}`,
-                  boxShadow: darkMode 
-                    ? "0 12px 24px rgba(0, 0, 0, 0.3)" 
+                  boxShadow: darkMode
+                    ? "0 12px 24px rgba(0, 0, 0, 0.3)"
                     : "0 12px 24px rgba(0, 0, 0, 0.15)",
                   cursor: "pointer",
-                  transition: "all 0.3s ease"
+                  transition: "all 0.3s ease",
                 }}
               />
             </motion.div>
-            <motion.div 
-              style={{ marginTop: "24px" }}
-              variants={itemVariants}
-            >
+            <motion.div style={{ marginTop: "24px" }} variants={itemVariants}>
               <Space size="middle">
                 {personalInfo.social.map((platform, index) => {
                   const IconComponent = eval(platform.icon);
@@ -222,14 +232,16 @@ const AboutSection = ({ darkMode }) => {
                           size="large"
                           onClick={() => window.open(platform.url, "_blank")}
                           style={{
-                            background: darkMode 
-                              ? `linear-gradient(45deg, #141414, #1f1f1f)` 
+                            background: darkMode
+                              ? `linear-gradient(45deg, #141414, #1f1f1f)`
                               : `linear-gradient(45deg, #f5f5f5, #ffffff)`,
                             boxShadow: darkMode
                               ? "0 4px 12px rgba(24, 144, 255, 0.2)"
                               : "0 4px 12px rgba(0, 0, 0, 0.1)",
-                            border: darkMode ? "1px solid #303030" : "1px solid #e8e8e8",
-                            transition: "all 0.3s ease"
+                            border: darkMode
+                              ? "1px solid #303030"
+                              : "1px solid #e8e8e8",
+                            transition: "all 0.3s ease",
                           }}
                         />
                       </motion.div>
@@ -247,12 +259,12 @@ const AboutSection = ({ darkMode }) => {
             <motion.div variants={titleVariants}>
               <Title
                 level={4}
-                style={{ 
+                style={{
                   background: "linear-gradient(90deg, #1890ff, #722ed1)",
                   WebkitBackgroundClip: "text",
                   WebkitTextFillColor: "transparent",
                   margin: "0 0 8px 0",
-                  display: "inline-block"
+                  display: "inline-block",
                 }}
               >
                 WHO I AM
@@ -260,15 +272,19 @@ const AboutSection = ({ darkMode }) => {
             </motion.div>
 
             <motion.div variants={subtitleVariants}>
-              <Title level={2} style={{ fontWeight: 600 }}>About Me</Title>
+              <Title level={2} style={{ fontWeight: 600 }}>
+                About Me
+              </Title>
             </motion.div>
 
             <motion.div variants={dividerVariants}>
               <Divider
-                style={{ 
-                  marginTop: "16px", 
+                style={{
+                  marginTop: "16px",
                   marginBottom: "24px",
-                  background: darkMode ? "rgba(255,255,255,0.1)" : "rgba(0,0,0,0.06)" 
+                  background: darkMode
+                    ? "rgba(255,255,255,0.1)"
+                    : "rgba(0,0,0,0.06)",
                 }}
               />
             </motion.div>
@@ -278,13 +294,20 @@ const AboutSection = ({ darkMode }) => {
                 key={index}
                 custom={index}
                 variants={fadeInVariants}
+                initial={{ opacity: 0, x: 50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8 }}
               >
-                <Paragraph style={{ 
-                  fontSize: "16px", 
-                  lineHeight: "1.8",
-                  color: darkMode ? "rgba(255,255,255,0.85)" : "rgba(0,0,0,0.75)",
-                  marginBottom: "20px"
-                }}>
+                <Paragraph
+                  style={{
+                    fontSize: "16px",
+                    lineHeight: "1.8",
+                    color: darkMode
+                      ? "rgba(255,255,255,0.85)"
+                      : "rgba(0,0,0,0.75)",
+                    marginBottom: "20px",
+                  }}
+                >
                   {paragraph}
                 </Paragraph>
               </motion.div>

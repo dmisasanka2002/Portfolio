@@ -36,12 +36,13 @@ import {
 } from "@ant-design/icons";
 import emailjs from "@emailjs/browser";
 
-
 import ResponsiveHeader from "./components/ResponsiveHeader";
 import AnimatedHeroSection from "./components/AnimatedHeroSection";
 import AboutSection from "./components/AboutSection";
 import SkillsSection from "./components/SkillsSection";
 import ProjectsSection from "./components/ProjectsSection";
+import ContactSection from "./components/ContactSection";
+import TrailCanvas from "./components/TrailCanvas";
 
 const { Content, Footer } = Layout;
 const { Title, Paragraph, Text } = Typography;
@@ -133,6 +134,8 @@ const App = () => {
   return (
     <ConfigProvider theme={themeConfig}>
       <Layout className={darkMode ? "dark-mode" : "light-mode"}>
+        <TrailCanvas/>
+
         {/* Navigation Bar */}
         <ResponsiveHeader
           darkMode={darkMode}
@@ -166,8 +169,7 @@ const App = () => {
                 bottom: 0,
                 zIndex: 1,
               }}
-            >
-            </div>
+            ></div>
 
             {/* Hero Section */}
             <AnimatedHeroSection darkMode={darkMode} />
@@ -217,7 +219,7 @@ const App = () => {
               backgroundColor: darkMode ? "#1a1a1a" : "#ffffff",
             }}
           >
-            <SkillsSection darkMode={darkMode}/>
+            <SkillsSection darkMode={darkMode} />
           </section>
 
           {/* Projects Section */}
@@ -229,7 +231,10 @@ const App = () => {
               backgroundColor: darkMode ? "#141414" : "#f7f9fc",
             }}
           >
-            <ProjectsSection darkMode={darkMode} setSelectedProject={setSelectedProject}/>
+            <ProjectsSection
+              darkMode={darkMode}
+              setSelectedProject={setSelectedProject}
+            />
           </section>
 
           {/* Contact Section */}
@@ -241,7 +246,7 @@ const App = () => {
               backgroundColor: darkMode ? "#1a1a1a" : "#ffffff",
             }}
           >
-            <Row justify="center">
+            {/* <Row justify="center">
               <Col xs={24} md={20} lg={18}>
                 <div style={{ textAlign: "center", marginBottom: "48px" }}>
                   <Title
@@ -257,15 +262,22 @@ const App = () => {
                 <Row gutter={[32, 32]}>
                   <Col xs={24} lg={12}>
                     <div style={{ marginBottom: "32px" }}>
-                      <Title level={3}>Let's Talk</Title>
-                      <Paragraph
-                        style={{ fontSize: "16px", lineHeight: "1.8" }}
+                      <motion.div
+                        initial={{ opacity: 0, y: 50 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8 }}
+                        className="text-center mb-16"
                       >
-                        Whether you have a question about a project, job
-                        opportunity, or just want to say hi, feel free to reach
-                        out. I'm always open to discussing new projects and
-                        ideas.
-                      </Paragraph>
+                        <Title level={3}>Let's Talk</Title>
+                        <Paragraph
+                          style={{ fontSize: "16px", lineHeight: "1.8" }}
+                        >
+                          Whether you have a question about a project, job
+                          opportunity, or just want to say hi, feel free to
+                          reach out. I'm always open to discussing new projects
+                          and ideas.
+                        </Paragraph>
+                      </motion.div>
                     </div>
 
                     <Row gutter={[16, 24]}>
@@ -471,7 +483,8 @@ const App = () => {
                   </Col>
                 </Row>
               </Col>
-            </Row>
+            </Row> */}
+            <ContactSection darkMode={darkMode} handleFormSubmit={handleFormSubmit}/>
           </section>
         </Content>
 

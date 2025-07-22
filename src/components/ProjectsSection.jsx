@@ -262,10 +262,7 @@
 
 // export default ProjectsSection;
 
-
 // ------------------------------------------------------------------------------------------------------
-
-
 
 import React, { useState, useEffect } from "react";
 import {
@@ -306,9 +303,11 @@ const ProjectsSection = ({ darkMode, setSelectedProject }) => {
 
   const { csvData: projectsData, loading } = useCSVDataLoader(csvUrl);
 
-
   // Extract unique categories from projects data
-  const categories = ["all", ...new Set((projectsData || []).map(project => project.category))];
+  const categories = [
+    "all",
+    ...new Set((projectsData || []).map((project) => project.category)),
+  ];
 
   // Check window size on mount and resize
   useEffect(() => {
@@ -325,9 +324,10 @@ const ProjectsSection = ({ darkMode, setSelectedProject }) => {
   }, []);
 
   // Filter projects based on active category
-  const filteredProjects = activeCategory === "all" 
-    ? projectsData 
-    : projectsData.filter(project => project.category === activeCategory);
+  const filteredProjects =
+    activeCategory === "all"
+      ? projectsData
+      : projectsData.filter((project) => project.category === activeCategory);
 
   // Reset to page 1 when changing category
   useEffect(() => {
@@ -401,7 +401,7 @@ const ProjectsSection = ({ darkMode, setSelectedProject }) => {
           <Title level={4}>{project.title}</Title>
           <Paragraph>{project.description}</Paragraph>
           <div style={{ marginTop: "16px" }}>
-            {project.tags.split(',').map((tag, tagIndex) => (
+            {project.tags.split(",").map((tag, tagIndex) => (
               <Tag key={tagIndex} style={{ marginBottom: "8px" }}>
                 {tag}
               </Tag>
@@ -443,27 +443,29 @@ const ProjectsSection = ({ darkMode, setSelectedProject }) => {
   // Custom category tabs component
   const renderCategoryTabs = () => {
     return (
-      <motion.div 
+      <motion.div
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        style={{ 
+        style={{
           marginBottom: "32px",
           display: "flex",
           justifyContent: "center",
           overflow: "auto",
-          padding: "8px 0"
+          padding: "8px 0",
         }}
       >
-        <div style={{ 
-          background: darkMode ? "#1f1f1f" : "#fff",
-          borderRadius: "12px",
-          padding: "4px",
-          boxShadow: "0 4px 16px rgba(0,0,0,0.1)",
-          display: "inline-flex",
-          overflowX: "auto",
-          maxWidth: "100%"
-        }}>
+        <div
+          style={{
+            background: darkMode ? "#1f1f1f" : "#fff",
+            borderRadius: "12px",
+            padding: "4px",
+            boxShadow: "0 4px 16px rgba(0,0,0,0.1)",
+            display: "inline-flex",
+            overflowX: "auto",
+            maxWidth: "100%",
+          }}
+        >
           {categories.map((category, index) => (
             <motion.button
               key={category}
@@ -471,12 +473,14 @@ const ProjectsSection = ({ darkMode, setSelectedProject }) => {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               style={{
-                backgroundColor: activeCategory === category 
-                  ? "#1890ff" 
-                  : "transparent",
-                color: activeCategory === category 
-                  ? "#fff" 
-                  : darkMode ? "#f0f0f0" : "#333",
+                backgroundColor:
+                  activeCategory === category ? "#1890ff" : "transparent",
+                color:
+                  activeCategory === category
+                    ? "#fff"
+                    : darkMode
+                    ? "#f0f0f0"
+                    : "#333",
                 border: "none",
                 padding: "12px 20px",
                 margin: "4px",
@@ -487,9 +491,10 @@ const ProjectsSection = ({ darkMode, setSelectedProject }) => {
                 textTransform: "capitalize",
                 transition: "all 0.3s ease",
                 whiteSpace: "nowrap",
-                boxShadow: activeCategory === category 
-                  ? "0 4px 12px rgba(24, 144, 255, 0.3)" 
-                  : "none",
+                boxShadow:
+                  activeCategory === category
+                    ? "0 4px 12px rgba(24, 144, 255, 0.3)"
+                    : "none",
               }}
             >
               {category}
@@ -504,10 +509,24 @@ const ProjectsSection = ({ darkMode, setSelectedProject }) => {
     <Row justify="center">
       <Col xs={24} md={20} lg={18}>
         <div style={{ textAlign: "center", marginBottom: "32px" }}>
-          <Title level={4} style={{ color: "#1890ff", margin: "0 0 8px 0" }}>
-            MY WORK
-          </Title>
-          <Title level={2}>Recent Projects</Title>
+          <motion.div
+            initial={{ opacity: 0, y: -50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="text-center mb-10"
+          >
+            <Title level={4} style={{ color: "#1890ff", margin: "0 0 8px 0" }}>
+              MY WORK
+            </Title>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            <Title level={2}>Recent Projects</Title>
+          </motion.div>
           <Divider />
         </div>
 
