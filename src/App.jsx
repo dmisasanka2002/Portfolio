@@ -29,6 +29,7 @@ import {
   MailOutlined,
   GithubOutlined,
   LinkedinOutlined,
+  LinkOutlined,
   TwitterOutlined,
   SendOutlined,
   DownloadOutlined,
@@ -131,10 +132,32 @@ const App = () => {
     },
   };
 
+  const getSourceIcon = (source) => {
+    switch (source?.toLowerCase()) {
+      case "github":
+        return <GithubOutlined />;
+      case "google drive":
+        return <LinkOutlined />;
+      default:
+        return <LinkOutlined />;
+    }
+  };
+
+  const getSourceTooltip = (source) => {
+    switch (source?.toLowerCase()) {
+      case "github":
+        return "View on GitHub";
+      case "google drive":
+        return "Open in Google Drive";
+      default:
+        return "Open Link";
+    }
+  };
+
   return (
     <ConfigProvider theme={themeConfig}>
       <Layout className={darkMode ? "dark-mode" : "light-mode"}>
-        <TrailCanvas/>
+        <TrailCanvas />
 
         {/* Navigation Bar */}
         <ResponsiveHeader
@@ -484,7 +507,10 @@ const App = () => {
                 </Row>
               </Col>
             </Row> */}
-            <ContactSection darkMode={darkMode} handleFormSubmit={handleFormSubmit}/>
+            <ContactSection
+              darkMode={darkMode}
+              handleFormSubmit={handleFormSubmit}
+            />
           </section>
         </Content>
 
@@ -586,7 +612,7 @@ const App = () => {
                 gap: 8,
               }}
             >
-              {selectedProject.tags.map((tag, tagIndex) => (
+              {selectedProject.tags.split(",").map((tag, tagIndex) => (
                 <Tag
                   key={tagIndex}
                   color="geekblue"
@@ -601,12 +627,34 @@ const App = () => {
               ))}
             </div>
 
-            <div style={{ marginTop: 32, textAlign: "right" }}>
+            {/* <div style={{ marginTop: 32, textAlign: "right" }}>
               <Tooltip title="View on GitHub">
                 <Button
                   shape="circle"
                   size="large"
                   icon={<GithubOutlined />}
+                  style={{
+                    background: "#24292e",
+                    color: "white",
+                    boxShadow: "0 4px 12px rgba(0, 0, 0, 0.2)",
+                    transition: "all 0.3s ease",
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = "scale(1.1)";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = "scale(1)";
+                  }}
+                  onClick={() => window.open(selectedProject.link, "_blank")}
+                />
+              </Tooltip>
+            </div> */}
+            <div style={{ marginTop: 32, textAlign: "right" }}>
+              <Tooltip title={getSourceTooltip(selectedProject.source)}>
+                <Button
+                  shape="circle"
+                  size="large"
+                  icon={getSourceIcon(selectedProject.source)}
                   style={{
                     background: "#24292e",
                     color: "white",

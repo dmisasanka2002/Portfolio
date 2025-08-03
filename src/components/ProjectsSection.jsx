@@ -411,7 +411,7 @@ const ProjectsSection = ({ darkMode, setSelectedProject }) => {
             <Button
               type="primary"
               icon={<ArrowRightOutlined />}
-              onClick={() => setSelectedProject(project)}
+              onClick={() => {setSelectedProject(project)}}
               size="large"
               shape="round"
               style={{

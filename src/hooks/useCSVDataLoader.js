@@ -6,7 +6,7 @@ const useCSVDataLoader = (csvUrl) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    console.log("Fetching CSV from URL:", csvUrl);
+    // console.log("Fetching CSV from URL:", csvUrl);
     const fetchCSV = async () => {
       try {
         const response = await fetch(csvUrl);
@@ -30,6 +30,8 @@ const useCSVDataLoader = (csvUrl) => {
   const headers = data[0] || [];
   const rows = data.slice(1);
 
+  // console.log(data)
+
   // Build student objects using headers only
   const csvData = rows.map((row) => {
     const rowData = headers.reduce((acc, header, i) => {
@@ -42,7 +44,8 @@ const useCSVDataLoader = (csvUrl) => {
       description: rowData["description"] || "",
       tags: rowData["tags"] || "",
       link: rowData["link"] || "",
-      highlight: rowData["highlight"] || "",
+      source: rowData["source"] || "",
+      highlight: rowData["highlight"].toLowerCase()==="true" || "",
       category: rowData["category"] || "",
     };
   });
