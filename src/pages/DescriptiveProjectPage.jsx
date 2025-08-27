@@ -245,34 +245,29 @@ const DescriptiveProjectPage = () => {
         >
           <h2 className="text-2xl font-bold mb-6">Project Gallery</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {project.images.split(",")?.map(
-              (image, index) => (
-                console.log(image),
-                (
-                  <div
-                    key={index}
-                    className="relative group cursor-pointer"
-                    onClick={() => setSelectedImage(image)}
-                  >
-                    <img
-                      src={image}
-                      alt={`Project screenshot ${index + 1}`}
-                      className="w-full h-48 object-cover rounded-lg shadow-lg group-hover:shadow-xl transition-all duration-300"
-                    />
-                    {/* <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300 rounded-lg flex items-center justify-center"> */}
-                    <div
-                      className={`absolute inset-0 rounded-lg flex items-center justify-center transition-all duration-300 ${
-                        darkMode
-                          ? "bg-black/0 group-hover:bg-black/20"
-                          : "bg-white/0 group-hover:bg-black/10"
-                      }`}
-                    >
-                      <ImageIcon className="w-8 h-8 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                    </div>
-                  </div>
-                )
-              )
-            )}
+            {project.images.split(",")?.map((image, index) => (
+              <div
+                key={index}
+                className="relative group cursor-pointer"
+                onClick={() => setSelectedImage(image)}
+              >
+                <img
+                  src={image}
+                  alt={`Project screenshot ${index + 1}`}
+                  className="w-full h-48 object-cover rounded-lg shadow-lg group-hover:shadow-xl transition-all duration-300"
+                />
+                {/* <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300 rounded-lg flex items-center justify-center"> */}
+                <div
+                  className={`absolute inset-0 rounded-lg flex items-center justify-center transition-all duration-300 ${
+                    darkMode
+                      ? "bg-black/0 group-hover:bg-black/20"
+                      : "bg-white/0 group-hover:bg-black/10"
+                  }`}
+                >
+                  <ImageIcon className="w-8 h-8 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                </div>
+              </div>
+            ))}
           </div>
         </div>
 

@@ -9,7 +9,7 @@ import { ThemeProvider } from "./contexts/ThemeContext";
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <ThemeProvider>
-      <BrowserRouter>
+      <BrowserRouter basename="/Portfolio">
         <Routes>
           <Route path="/" element={<App />} />
           <Route path="/project/:id" element={<DescriptiveProjectPage />} />

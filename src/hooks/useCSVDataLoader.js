@@ -6,7 +6,6 @@ const useCSVDataLoader = (csvUrl) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // console.log("Fetching CSV from URL:", csvUrl);
     const fetchCSV = async () => {
       try {
         const response = await fetch(csvUrl);
