@@ -26,27 +26,51 @@ const useCSVDataLoader = (csvUrl) => {
     fetchCSV();
   }, [csvUrl]);
 
-
   const headers = data[0] || [];
   const rows = data.slice(1);
 
-  // console.log(data)
-
   // Build student objects using headers only
-  const csvData = rows.map((row) => {
+  const csvData = rows.map((row, rowIndex) => {
     const rowData = headers.reduce((acc, header, i) => {
       acc[header.trim().toLowerCase()] = row[i];
       return acc;
     }, {});
 
+    // return {
+    //   title: rowData["title"] || "",
+    //   description: rowData["description"] || "",
+    //   tags: rowData["tags"] || "",
+    //   link: rowData["link"] || "",
+    //   source: rowData["source"] || "",
+    //   highlight: rowData["highlight"].toLowerCase()==="true" || "",
+    //   category: rowData["category"] || "",
+    // };
+
     return {
+      id: rowIndex + 1,
       title: rowData["title"] || "",
       description: rowData["description"] || "",
-      tags: rowData["tags"] || "",
-      link: rowData["link"] || "",
-      source: rowData["source"] || "",
-      highlight: rowData["highlight"].toLowerCase()==="true" || "",
+      shortDescription: rowData["shortdescription"] || "",
+      fullDescription: rowData["fulldescription"] || "",
       category: rowData["category"] || "",
+      tags: rowData["tags"] ? rowData["tags"] : "",
+      status: rowData["status"] || "",
+      date: rowData["date"] || "",
+      team: rowData["team"] || "",
+      rating: rowData["rating"] || "",
+      technologies: rowData["technologies"] ? rowData["technologies"] : "",
+      features: rowData["features"] ? rowData["features"] : "",
+      thumbnail: rowData["thumbnail"] || "",
+      images: rowData["images"] ? rowData["images"] : "",
+      videos:
+        rowData["videos"] && rowData["videos"][0]
+          ? `${rowData["videos"][0].title} | ${rowData["videos"][0].thumbnail} | ${rowData["videos"][0].description}`
+          : "",
+
+      LiveUrl: rowData["liveurl"] || "",
+      source: rowData["source"] || "",
+      link: rowData["link"] || "",
+      highlight: rowData["status"]?.toLowerCase() === "completed" || "",
     };
   });
 

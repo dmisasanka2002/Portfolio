@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import {
   ConfigProvider,
   theme,
@@ -44,13 +44,15 @@ import SkillsSection from "./components/SkillsSection";
 import ProjectsSection from "./components/ProjectsSection";
 import ContactSection from "./components/ContactSection";
 import TrailCanvas from "./components/TrailCanvas";
+import { ThemeContext } from "./contexts/ThemeContext";
 
 const { Content, Footer } = Layout;
 const { Title, Paragraph, Text } = Typography;
 const { TextArea } = Input;
 
 const App = () => {
-  const [darkMode, setDarkMode] = useState(true);
+  // const [darkMode, setDarkMode] = useState(true);
+  const { darkMode, setDarkMode} = useContext(ThemeContext);
   const [form] = Form.useForm();
   const [scrollPosition, setScrollPosition] = useState(0);
   const [activeSection, setActiveSection] = useState("home");
@@ -256,7 +258,7 @@ const App = () => {
           >
             <ProjectsSection
               darkMode={darkMode}
-              setSelectedProject={setSelectedProject}
+              // setSelectedProject={setSelectedProject}
             />
           </section>
 

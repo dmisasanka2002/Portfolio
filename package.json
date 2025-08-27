@@ -22,14 +22,18 @@
     "axios": "^1.8.2",
     "framer-motion": "^12.6.3",
     "gh-pages": "^6.3.0",
+    "install": "^0.13.0",
     "js-cookie": "^3.0.5",
+    "lucide-react": "^0.542.0",
+    "npm": "^11.5.2",
     "papaparse": "^5.5.3",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-router-dom": "^7.3.0",
     "react-scroll": "^1.9.3",
     "tailwindcss": "^4.1.11",
-    "three": "^0.174.0"
+    "three": "^0.174.0",
+    "xlsx": "^0.18.5"
   },
   "devDependencies": {
     "@eslint/js": "^9.21.0",
