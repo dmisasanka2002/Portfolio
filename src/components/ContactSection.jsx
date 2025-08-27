@@ -1,4 +1,3 @@
-import React, { useState, useEffect } from "react";
 import { Button, Typography, Form, Input, Card, Divider, Row, Col } from "antd";
 import {
   MailOutlined,

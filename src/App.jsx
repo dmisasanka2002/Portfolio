@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext } from "react";
 import {
   ConfigProvider,
   theme,
@@ -7,33 +7,18 @@ import {
   Typography,
   Form,
   Input,
-  Card,
   Modal,
   Divider,
-  Row,
-  Col,
   Space,
-  Avatar,
-  Progress,
   Tag,
-  Badge,
   FloatButton,
   Tooltip,
-  Carousel,
 } from "antd";
 import { Link } from "react-scroll";
-import { Canvas } from "@react-three/fiber";
-import { OrbitControls } from "@react-three/drei";
 import {
-  ProjectOutlined,
-  MailOutlined,
   GithubOutlined,
   LinkedinOutlined,
   LinkOutlined,
-  TwitterOutlined,
-  SendOutlined,
-  DownloadOutlined,
-  ArrowRightOutlined,
 } from "@ant-design/icons";
 import emailjs from "@emailjs/browser";
 

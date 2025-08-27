@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import {
   Row,
   Col,
@@ -7,16 +7,10 @@ import {
   Tooltip,
   Typography,
   Divider,
-  Card,
   Space,
 } from "antd";
-import {
-  GithubOutlined,
-  LinkedinOutlined,
-  TwitterOutlined,
-} from "@ant-design/icons";
 import { motion, useAnimation } from "framer-motion";
-import { personalInfo, aboutText, statsData } from "../data/aboutdata";
+import { personalInfo, aboutText } from "../data/aboutdata";
 
 const { Title, Paragraph, Text } = Typography;
 
