@@ -83,10 +83,10 @@ const ContactSection = ({ darkMode, handleFormSubmit }) => {
                         </Text>
                         <Text>
                           <a
-                            href="mailto:dmisasanka@gmail.com"
+                            href="mailto:ishansasankadisanayaka@gmail.com"
                             style={{ color: "#1890ff" }}
                           >
-                            dmisasanka@gmail.com
+                            ishansasankadisanayaka@gmail.com
                           </a>
                         </Text>
                       </div>

@@ -25,8 +25,6 @@ const DescriptiveProjectPage = () => {
   const csvUrl =
     "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ0OolWGTTvmGyuG__Uz927ukP6Pf_NDNSeZajeA_kajS9dEocLgl3NgCMwykoVROxCqrMz2SncYNOd/pub?output=csv";
 
-  // const project = state?.project || useCSVDataLoader(csvUrl,row => row.id === id).csvData;
-
   // Only fetch if state.project is not provided
   const { csvData, loading } = useCSVDataLoader(
     state?.project ? null : csvUrl,
@@ -93,7 +91,6 @@ const DescriptiveProjectPage = () => {
     }
   };
 
-  if (!project) return <div>Project not found</div>;
 
   return (
     <div
