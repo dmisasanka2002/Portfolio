@@ -9,12 +9,13 @@ const ProjectsSection = ({ darkMode }) => {
   const [filter, setFilter] = useState("all");
   const [currentPage, setCurrentPage] = useState(1);
 
+  const navigate = useNavigate();
+
   const csvUrl =
     "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ0OolWGTTvmGyuG__Uz927ukP6Pf_NDNSeZajeA_kajS9dEocLgl3NgCMwykoVROxCqrMz2SncYNOd/pub?output=csv";
 
   const { csvData: projectsData, loading } = useCSVDataLoader(csvUrl);
 
-  const navigate = useNavigate();
 
   const categories = ["all", ...new Set(projectsData.map((p) => p.category))];
   const filteredProjects =
@@ -61,6 +62,25 @@ const ProjectsSection = ({ darkMode }) => {
         return "bg-gray-100 text-gray-800 dark:bg-gray-900 dark:text-gray-300";
     }
   };
+
+
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center min-h-screen bg-gray-50 dark:bg-gray-900">
+        <motion.div
+          className="flex flex-col items-center gap-3"
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.4 }}
+        >
+          <div className="w-12 h-12 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
+          <p className="text-gray-700 dark:text-gray-300 text-lg font-medium">
+            Loading project details...
+          </p>
+        </motion.div>
+      </div>
+    );
+  }
 
   return (
     <div

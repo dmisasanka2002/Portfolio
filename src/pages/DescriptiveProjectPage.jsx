@@ -9,8 +9,11 @@ import {
   ImageIcon,
   Play,
 } from "lucide-react";
+import { motion } from "framer-motion";
+
 import GoogleDriveSVG from "../components/GoogleDriveSVG";
 import { ThemeContext } from "../contexts/ThemeContext";
+import useCSVDataLoader from "../hooks/useCSVDataLoader";
 
 const DescriptiveProjectPage = () => {
   const { id } = useParams();
@@ -19,7 +22,63 @@ const DescriptiveProjectPage = () => {
   const { darkMode } = useContext(ThemeContext);
   const [selectedImage, setSelectedImage] = useState(null);
 
-  const project = state?.project;
+  const csvUrl =
+    "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ0OolWGTTvmGyuG__Uz927ukP6Pf_NDNSeZajeA_kajS9dEocLgl3NgCMwykoVROxCqrMz2SncYNOd/pub?output=csv";
+
+  // const project = state?.project || useCSVDataLoader(csvUrl,row => row.id === id).csvData;
+
+  // Only fetch if state.project is not provided
+  const { csvData, loading } = useCSVDataLoader(
+    state?.project ? null : csvUrl,
+    (row) => String(row.id) === String(id) // filtering handled inside the hook
+  );
+
+  // Prefer state.project if available, else take from CSV
+  const project = state?.project || csvData[0];
+
+  if (!state?.project && loading) {
+    return (
+      <div className="flex items-center justify-center min-h-screen bg-gray-50 dark:bg-gray-900">
+        <motion.div
+          className="flex flex-col items-center gap-3"
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.4 }}
+        >
+          <div className="w-12 h-12 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
+          <p className="text-gray-700 dark:text-gray-300 text-lg font-medium">
+            Loading project details...
+          </p>
+        </motion.div>
+      </div>
+    );
+  }
+
+  if (!project) {
+    return (
+      <div className="flex items-center justify-center min-h-screen bg-gray-50 dark:bg-gray-900">
+        <motion.div
+          className="bg-white dark:bg-gray-800 shadow-lg rounded-2xl p-8 text-center max-w-md"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          <h2 className="text-2xl font-bold text-red-600 mb-2">
+            Project Not Found
+          </h2>
+          <p className="text-gray-600 dark:text-gray-300 mb-4">
+            The project you’re looking for doesn’t exist or couldn’t be loaded.
+          </p>
+          <button
+            onClick={() => {state?.project ? navigate(-1) : navigate("")}}
+            className="px-5 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg shadow-md transition"
+          >
+            {state?.project ? `Go Back` : `Home Page`}
+          </button>
+        </motion.div>
+      </div>
+    );
+  }
 
   const getStatusColor = (status) => {
     switch (status) {
@@ -46,7 +105,7 @@ const DescriptiveProjectPage = () => {
         {/* Header */}
         <div className="flex items-center justify-between mb-8">
           <button
-            onClick={() => navigate(-1)}
+            onClick={() => {state?.project ? navigate(-1) : navigate("/")}}
             className={`flex items-center space-x-2 px-4 py-2 rounded-lg cursor-pointer shadow-md hover:shadow-lg transition-all duration-300 border ${
               darkMode
                 ? "bg-gray-800 text-white border-gray-700"
@@ -54,7 +113,8 @@ const DescriptiveProjectPage = () => {
             }`}
           >
             <ChevronLeft className="w-5 h-5" />
-            <span>Back</span>
+            {/* <span>Back</span> */}
+            <span>{state?.project ? `Back` : `Home Page`}</span>
           </button>
         </div>
 
