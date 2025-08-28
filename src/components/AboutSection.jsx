@@ -9,6 +9,11 @@ import {
   Divider,
   Space,
 } from "antd";
+import {
+  GithubOutlined,
+  LinkedinOutlined,
+  TwitterOutlined,
+} from "@ant-design/icons";
 import { motion, useAnimation } from "framer-motion";
 import { personalInfo, aboutText } from "../data/aboutdata";
 

@@ -47,7 +47,6 @@ const DescriptiveProjectPage = () => {
         <div className="flex items-center justify-between mb-8">
           <button
             onClick={() => navigate(-1)}
-            // className="flex items-center space-x-2 px-4 py-2 rounded-lg cursor-pointer bg-white dark:bg-gray-800 shadow-md hover:shadow-lg transition-all duration-300 border border-gray-200 dark:border-gray-700"
             className={`flex items-center space-x-2 px-4 py-2 rounded-lg cursor-pointer shadow-md hover:shadow-lg transition-all duration-300 border ${
               darkMode
                 ? "bg-gray-800 text-white border-gray-700"
@@ -60,7 +59,6 @@ const DescriptiveProjectPage = () => {
         </div>
 
         {/* Project Header */}
-        {/* <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8 mb-8 border border-gray-200 dark:border-gray-700"> */}
         <div
           className={`rounded-2xl shadow-xl p-8 mb-8 border transition-colors duration-300 ${
             darkMode
@@ -86,7 +84,6 @@ const DescriptiveProjectPage = () => {
               <h1 className="text-4xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
                 {project.title}
               </h1>
-              {/* <p className="text-lg text-gray-600 dark:text-gray-400 mb-6"> */}
               <p className="text-lg text-gray-700 dark:text-gray-400 mb-6">
                 {project.description}
               </p>
@@ -99,10 +96,6 @@ const DescriptiveProjectPage = () => {
                       : `Individual project`}
                   </span>
                 </div>
-                {/* <div className="flex items-center space-x-2">
-                  <Star className="w-5 h-5 text-yellow-500 fill-current" />
-                  <span>{project.rating}/5.0</span>
-                </div> */}
               </div>
               <div className="flex space-x-4">
                 {project.liveUrl && (
@@ -119,7 +112,6 @@ const DescriptiveProjectPage = () => {
                   <a
                     target="blank"
                     href={project.link}
-                    // className="flex items-center space-x-2 px-6 py-3 bg-gray-800 dark:bg-gray-700 text-white rounded-lg hover:bg-gray-900 dark:hover:bg-gray-600 transition-all duration-300 shadow-lg hover:shadow-xl"
                     className={`flex items-center space-x-2 px-6 py-3 rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl ${
                       darkMode
                         ? "bg-gray-700 text-white hover:bg-gray-600"
@@ -148,7 +140,6 @@ const DescriptiveProjectPage = () => {
         </div>
 
         {/* Technologies */}
-        {/* <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8 mb-8 border border-gray-200 dark:border-gray-700"> */}
         <div
           className={`rounded-2xl shadow-xl p-8 mb-8 border transition-colors duration-300 ${
             darkMode
@@ -161,7 +152,6 @@ const DescriptiveProjectPage = () => {
             {project.technologies?.split(",").map((tech, index) => (
               <span
                 key={index}
-                // className="px-4 py-2 bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/30 dark:to-purple-900/30 text-blue-700 dark:text-blue-300 rounded-full border border-blue-200 dark:border-blue-700 font-medium"
                 className={`px-4 py-2 rounded-full border font-medium transition-colors duration-300 ${
                   darkMode
                     ? "bg-blue-900/30 text-blue-300 border-blue-700"
@@ -175,7 +165,6 @@ const DescriptiveProjectPage = () => {
         </div>
 
         {/* Description */}
-        {/* <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8 mb-8 border border-gray-200 dark:border-gray-700"> */}
         <div
           className={`rounded-2xl shadow-xl p-8 mb-8 border transition-colors duration-300 ${
             darkMode
@@ -188,7 +177,6 @@ const DescriptiveProjectPage = () => {
             {project.fullDescription.split("\n\n").map((paragraph, index) => (
               <p
                 key={index}
-                // className="mb-4 text-gray-700 dark:text-gray-300 leading-relaxed"
                 className={`mb-6 text-[17px] leading-loose tracking-wide ${
                   darkMode ? "text-gray-300" : "text-gray-800"
                 }`}
@@ -200,7 +188,6 @@ const DescriptiveProjectPage = () => {
         </div>
 
         {/* Features */}
-        {/* <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8 mb-8 border border-gray-200 dark:border-gray-700"> */}
         <div
           className={`rounded-2xl shadow-xl p-8 mb-8 border transition-colors duration-300 ${
             darkMode
@@ -213,7 +200,6 @@ const DescriptiveProjectPage = () => {
             {project.features.split(",").map((feature, index) => (
               <div
                 key={index}
-                // className="flex items-center space-x-3 p-3 rounded-lg bg-gray-50 dark:bg-gray-700/50"
                 className={`flex items-center space-x-3 p-4 rounded-lg transition-colors duration-300 ${
                   darkMode
                     ? "bg-gray-700/50 text-gray-300"
@@ -222,7 +208,6 @@ const DescriptiveProjectPage = () => {
               >
                 <div className="w-2 h-2 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full"></div>
                 <span
-                  // className="text-gray-700 dark:text-gray-300"
                   className={`text-[17px] leading-loose tracking-wide ${
                     darkMode ? "text-gray-300" : "text-gray-800"
                   }`}
@@ -235,7 +220,6 @@ const DescriptiveProjectPage = () => {
         </div>
 
         {/* Images Gallery */}
-        {/* <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8 mb-8 border border-gray-200 dark:border-gray-700"> */}
         <div
           className={`rounded-2xl shadow-xl p-8 mb-8 border transition-colors duration-300 ${
             darkMode
@@ -256,7 +240,6 @@ const DescriptiveProjectPage = () => {
                   alt={`Project screenshot ${index + 1}`}
                   className="w-full h-48 object-cover rounded-lg shadow-lg group-hover:shadow-xl transition-all duration-300"
                 />
-                {/* <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300 rounded-lg flex items-center justify-center"> */}
                 <div
                   className={`absolute inset-0 rounded-lg flex items-center justify-center transition-all duration-300 ${
                     darkMode
@@ -273,7 +256,6 @@ const DescriptiveProjectPage = () => {
 
         {/* Videos */}
         {project.videos && project.videos.length > 0 && (
-          // <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8 border border-gray-200 dark:border-gray-700">
           <div
             className={`rounded-2xl shadow-xl p-8 mb-8 border transition-colors duration-300 ${
               darkMode

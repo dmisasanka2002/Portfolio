@@ -15,12 +15,6 @@ export const personalInfo = {
       icon: "LinkedinOutlined",
       url: "https://www.linkedin.com/in/ishan-sasanka-a2b4872ab",
     },
-    // Uncomment to add Twitter
-    // {
-    //   name: "Twitter",
-    //   icon: "TwitterOutlined",
-    //   url: "https://twitter.com/your-username"
-    // }
   ],
 };
 

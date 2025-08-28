@@ -70,9 +70,7 @@ const ProjectsSection = ({ darkMode }) => {
     >
       <div className="container mx-auto px-4 py-8">
         {/* Header */}
-        {/* <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-8"> */}
         <div className="flex flex-col items-center justify-center text-center mb-8">
-          {/* <div className="text-center"> */}
           <div className="mb-4">
             <motion.h1
               initial={{ opacity: 0, y: -50 }}
@@ -91,9 +89,7 @@ const ProjectsSection = ({ darkMode }) => {
               Discover my amazing projects and innovations
             </motion.p>
           </div>
-          {/* <div className="flex items-center space-x-4 mt-4 md:mt-0"> */}
           <div className="w-full flex justify-end">
-            {/* <div className="hidden md:flex items-center space-x-2 bg-white dark:bg-gray-800 rounded-lg p-1 border border-gray-200 dark:border-gray-700"> */}
             <div
               className={`hidden md:flex items-center space-x-2 rounded-lg p-1 border transition-colors duration-300 ${
                 darkMode
@@ -126,32 +122,7 @@ const ProjectsSection = ({ darkMode }) => {
         </div>
 
         {/* Filters */}
-        {/* <div className="flex flex-wrap justify-center gap-3 mb-8">
-          {categories.map((category) => (
-            <button
-              key={category}
-              onClick={() => setFilter(category)}
-              className={`px-4 py-2 rounded-lg transition-all duration-300 ${
-                filter === category
-                  ? "bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg"
-                  : darkMode
-                  ? "bg-gray-800 text-gray-300 border border-gray-700 hover:shadow-md"
-                  : "bg-gray-100 text-gray-800 border border-gray-300 hover:bg-gray-200 hover:shadow-md"
-              }`}
-            >
-              {category.charAt(0).toUpperCase() + category.slice(1)}
-            </button>
-          ))}
-        </div> */}
-
-        {/* Filters */}
-        <div
-          className="
-    flex gap-3 mb-8
-    flex-nowrap overflow-x-auto scrollbar-hide
-    sm:justify-center sm:flex-wrap sm:overflow-x-visible
-  "
-        >
+        <div className="flex gap-3 mb-8 flex-nowrap overflow-x-auto scrollbar-hide sm:justify-center sm:flex-wrap sm:overflow-x-visible">
           {categories.map((category) => (
             <button
               key={category}
@@ -183,9 +154,6 @@ const ProjectsSection = ({ darkMode }) => {
               onClick={() => {
                 navigate(`/project/${project.id}`, { state: { project } });
               }}
-              // className={`bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer border border-gray-200 dark:border-gray-700 overflow-hidden group ${
-              //   viewMode === "list" ? "flex flex-col md:flex-row" : ""
-              // }`}
               className={`rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer border overflow-hidden group ${
                 darkMode
                   ? "bg-gray-800 border-gray-700 text-white"
@@ -223,7 +191,6 @@ const ProjectsSection = ({ darkMode }) => {
                   </span>
                   <div className="flex items-center space-x-1">
                     <Star className="w-4 h-4 text-yellow-500 fill-current" />
-                    {/* <span className="text-sm text-gray-600 dark:text-gray-400"> */}
                     <span
                       className={`text-sm ${
                         darkMode ? "text-gray-400" : "text-gray-700"
@@ -236,7 +203,6 @@ const ProjectsSection = ({ darkMode }) => {
                 <h3 className="text-xl font-bold mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
                   {project.title}
                 </h3>
-                {/* <p className="text-gray-600 dark:text-gray-400 mb-4 text-sm"> */}
                 <p
                   className={`mb-4 text-sm ${
                     darkMode ? "text-gray-300" : "text-gray-700"
@@ -251,7 +217,6 @@ const ProjectsSection = ({ darkMode }) => {
                     .map((tag, index) => (
                       <span
                         key={index}
-                        // className="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-md text-xs"
                         className={`px-2 py-1 rounded-md text-xs ${
                           darkMode
                             ? "bg-gray-700 text-gray-300"
@@ -263,7 +228,6 @@ const ProjectsSection = ({ darkMode }) => {
                     ))}
                   {project.tags.split(",").length > 3 && (
                     <span
-                      // className="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-md text-xs"
                       className={`px-2 py-1 rounded-md text-xs ${
                         darkMode
                           ? "bg-gray-700 text-gray-300"
@@ -280,11 +244,10 @@ const ProjectsSection = ({ darkMode }) => {
                     <span>{new Date(project.date).toLocaleDateString()}</span>
                   </div>
                   <div className="flex items-center space-x-2">
+                    <Users className="w-4 h-4" />
                     {project.team != 0
-                      ? `${(<Users className="w-4 h-4" />)}${
-                          project.team
-                        } team members`
-                      : `Individual project`}
+                      ? ` ${project.team} team members`
+                      : ` Individual project`}
                   </div>
                 </div>
               </div>
@@ -298,7 +261,6 @@ const ProjectsSection = ({ darkMode }) => {
             <button
               onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
               disabled={currentPage === 1}
-              // className="px-4 py-2 rounded-full bg-gradient-to-r from-gray-300 to-gray-400 text-white shadow-md hover:from-gray-400 hover:to-gray-500 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
               className={`px-4 py-2 rounded-full shadow-md transition-all disabled:opacity-50 disabled:cursor-not-allowed ${
                 darkMode
                   ? "bg-gray-700 text-white hover:bg-gray-600"
@@ -312,12 +274,6 @@ const ProjectsSection = ({ darkMode }) => {
               <button
                 key={i}
                 onClick={() => setCurrentPage(i + 1)}
-                // className={`px-4 py-2 rounded-full shadow-md transition-all ${
-                //   currentPage === i + 1
-                //     ? "bg-blue-600 text-white"
-                //     : "bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 border border-gray-300 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-700"
-                // }`}
-
                 className={`px-4 py-2 rounded-full shadow-md transition-all border ${
                   currentPage === i + 1
                     ? "bg-blue-600 text-white border-blue-600"
@@ -335,7 +291,6 @@ const ProjectsSection = ({ darkMode }) => {
                 setCurrentPage((prev) => Math.min(prev + 1, totalPages))
               }
               disabled={currentPage === totalPages}
-              // className="px-4 py-2 rounded-full bg-gradient-to-r from-gray-300 to-gray-400 text-white shadow-md hover:from-gray-400 hover:to-gray-500 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
               className={`px-4 py-2 rounded-full shadow-md transition-all disabled:opacity-50 disabled:cursor-not-allowed ${
                 darkMode
                   ? "bg-gray-700 text-white hover:bg-gray-600"
