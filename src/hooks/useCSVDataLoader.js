@@ -106,6 +106,20 @@ const useCSVDataLoader = (csvUrl, rowFilter = null) => {
             return acc;
           }, {});
 
+          // Convert Google Drive links into direct-view links
+          let images = rowData["images"] ? rowData["images"] : "";
+          if (images) {
+            images = images
+              .split(",") // support multiple images in CSV
+              .map((link) => {
+                const fileId = link.match(/[-\w]{25,}/)?.[0]; // extract fileId
+                return fileId
+                  ? `https://drive.google.com/uc?export=view&id=${fileId}`
+                  : link;
+              })
+              .join(",");
+          }
+
           return {
             id: rowIndex + 1,
             title: rowData["title"] || "",
@@ -123,7 +137,8 @@ const useCSVDataLoader = (csvUrl, rowFilter = null) => {
               : "",
             features: rowData["features"] ? rowData["features"] : "",
             thumbnail: rowData["thumbnail"] || "",
-            images: rowData["images"] ? rowData["images"] : "",
+            // images: rowData["images"] ? rowData["images"] : "",
+            images: images,
             videos:
               rowData["videos"] && rowData["videos"][0]
                 ? `${rowData["videos"][0].title} | ${rowData["videos"][0].thumbnail} | ${rowData["videos"][0].description}`
@@ -156,7 +171,6 @@ const useCSVDataLoader = (csvUrl, rowFilter = null) => {
 };
 
 export default useCSVDataLoader;
-
 
 // Return only completed items:
 // const { csvData, loading } = useCSVDataLoader(csvUrl, row => row.status === "completed");

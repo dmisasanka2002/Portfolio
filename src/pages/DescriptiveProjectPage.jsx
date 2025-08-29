@@ -10,6 +10,7 @@ import {
   Play,
 } from "lucide-react";
 import { motion } from "framer-motion";
+import ReactMarkdown from "react-markdown";
 
 import GoogleDriveSVG from "../components/GoogleDriveSVG";
 import { ThemeContext } from "../contexts/ThemeContext";
@@ -68,7 +69,9 @@ const DescriptiveProjectPage = () => {
             The project you’re looking for doesn’t exist or couldn’t be loaded.
           </p>
           <button
-            onClick={() => {state?.project ? navigate(-1) : navigate("")}}
+            onClick={() => {
+              state?.project ? navigate(-1) : navigate("");
+            }}
             className="px-5 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg shadow-md transition"
           >
             {state?.project ? `Go Back` : `Home Page`}
@@ -91,7 +94,6 @@ const DescriptiveProjectPage = () => {
     }
   };
 
-
   return (
     <div
       className={`min-h-screen transition-colors duration-300 ${
@@ -102,7 +104,9 @@ const DescriptiveProjectPage = () => {
         {/* Header */}
         <div className="flex items-center justify-between mb-8">
           <button
-            onClick={() => {state?.project ? navigate(-1) : navigate("/")}}
+            onClick={() => {
+              state?.project ? navigate(-1) : navigate("/");
+            }}
             className={`flex items-center space-x-2 px-4 py-2 rounded-lg cursor-pointer shadow-md hover:shadow-lg transition-all duration-300 border ${
               darkMode
                 ? "bg-gray-800 text-white border-gray-700"
@@ -222,7 +226,7 @@ const DescriptiveProjectPage = () => {
         </div>
 
         {/* Description */}
-        <div
+        {/* <div
           className={`rounded-2xl shadow-xl p-8 mb-8 border transition-colors duration-300 ${
             darkMode
               ? "bg-gray-800 text-white border-gray-700"
@@ -241,6 +245,37 @@ const DescriptiveProjectPage = () => {
                 {paragraph}
               </p>
             ))}
+          </div>
+        </div> */}
+
+        {/* Description */}
+        <div
+          className={`rounded-2xl shadow-xl p-8 mb-8 border transition-colors duration-300 ${
+            darkMode
+              ? "bg-gray-800 text-white border-gray-700"
+              : "bg-gray-100 text-gray-800 border-gray-300"
+          }`}
+        >
+          <h2 className="text-2xl font-bold mb-6">Project Overview</h2>
+          <div className="prose dark:prose-invert max-w-none text-[17px] leading-loose tracking-wide">
+            <ReactMarkdown
+              components={{
+                p: ({ node, ...props }) => (
+                  <p
+                    className={`${
+                      darkMode ? "text-gray-300" : "text-gray-800"
+                    } mb-4`}
+                    {...props}
+                  />
+                ),
+                li: ({ node, ...props }) => <li className="mb-2" {...props} />,
+                h3: ({ node, ...props }) => (
+                  <h3 className="text-xl font-semibold mt-4 mb-2" {...props} />
+                ),
+              }}
+            >
+              {project.fullDescription}
+            </ReactMarkdown>
           </div>
         </div>
 
