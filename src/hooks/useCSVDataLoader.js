@@ -139,10 +139,7 @@ const useCSVDataLoader = (csvUrl, rowFilter = null) => {
             thumbnail: rowData["thumbnail"] || "",
             // images: rowData["images"] ? rowData["images"] : "",
             images: images,
-            videos:
-              rowData["videos"] && rowData["videos"][0]
-                ? `${rowData["videos"][0].title} | ${rowData["videos"][0].thumbnail} | ${rowData["videos"][0].description}`
-                : "",
+            videos: rowData["videos"] || "",
 
             LiveUrl: rowData["liveurl"] || "",
             source: rowData["source"] || "",

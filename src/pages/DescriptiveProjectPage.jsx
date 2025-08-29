@@ -94,6 +94,11 @@ const DescriptiveProjectPage = () => {
     }
   };
 
+  function convertDriveToEmbed(url) {
+    const match = url.match(/\/d\/(.*)\/view/);
+    return match ? `https://drive.google.com/file/d/${match[1]}/preview` : url;
+  }
+
   return (
     <div
       className={`min-h-screen transition-colors duration-300 ${
@@ -357,22 +362,45 @@ const DescriptiveProjectPage = () => {
           >
             <h2 className="text-2xl font-bold mb-6">Project Videos</h2>
             <div className="grid md:grid-cols-2 gap-6">
-              {project.videos.split(",").map((video, index) => (
-                <div key={index} className="relative group cursor-pointer">
-                  <img
-                    src={video.thumbnail}
-                    alt={video.title}
-                    className="w-full h-48 object-cover rounded-lg shadow-lg"
-                  />
-                  <div className="absolute inset-0 bg-black/30 rounded-lg flex items-center justify-center">
-                    <Play className="w-12 h-12 text-white" />
+              {project.videos?.split(",").map((videoUrl, index) => {
+                videoUrl = videoUrl.trim();
+                let embedUrl = "";
+                let title = `Video ${index + 1}`;
+
+                // Check if YouTube
+                const ytMatch = videoUrl.match(/(?:v=|youtu\.be\/)([^&]+)/);
+                if (ytMatch) {
+                  const videoId = ytMatch[1];
+                  embedUrl = `https://www.youtube.com/embed/${videoId}`;
+                }
+                // Check if Google Drive
+                else if (videoUrl.includes("drive.google.com")) {
+                  const driveMatch = videoUrl.match(/\/d\/(.*)\/view/);
+                  if (driveMatch)
+                    embedUrl = `https://drive.google.com/file/d/${driveMatch[1]}/preview`;
+                }
+
+                return (
+                  <div
+                    key={index}
+                    className="relative aspect-video rounded-lg overflow-hidden shadow-lg"
+                  >
+                    {embedUrl ? (
+                      <iframe
+                        src={embedUrl}
+                        title={title}
+                        className="w-full h-full"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                      />
+                    ) : (
+                      <p className="text-center text-sm text-red-500">
+                        Invalid video link
+                      </p>
+                    )}
                   </div>
-                  <div className="absolute bottom-4 left-4 right-4">
-                    <h3 className="text-white font-semibold">{video.title}</h3>
-                    <p className="text-white/80 text-sm">{video.description}</p>
-                  </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
         )}
