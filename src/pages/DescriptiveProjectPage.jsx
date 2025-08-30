@@ -70,7 +70,7 @@ const DescriptiveProjectPage = () => {
           </p>
           <button
             onClick={() => {
-              state?.project ? navigate(-1) : navigate("");
+              state?.project ? navigate(-1) : navigate("/");
             }}
             className="px-5 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg shadow-md transition"
           >
