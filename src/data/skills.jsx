@@ -10,7 +10,7 @@ import {
 export const skillsData = [
     {
       title: "Programming",
-      description: "JavaScript, Python, C++, Java",
+      description: "JavaScript, Python, C++, Java,C#",
       icon: <CodeOutlined />,
       color: "#1890ff",
       proficiency: 90,
@@ -30,15 +30,15 @@ export const skillsData = [
       proficiency: 90,
     },
     {
-      title: "3D Modeling",
-      description: "AutoCAD, SolidWorks",
+      title: "CAD & 3D Modeling",
+      description: "AutoCAD, SolidWorks, Solid Edge",
       icon: <AntDesignOutlined />,
       color: "#722ed1",
       proficiency: 95,
     },
     {
-      title: "Engineering Analysis",
-      description: "FEA, MATLAB",
+      title: "Engineering Analysis & Simulations",
+      description: "FEA, MATLAB, Fluidsim",
       icon: <ExperimentOutlined />,
       color: "#eb2f96",
       proficiency: 88,

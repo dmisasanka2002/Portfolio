@@ -42,3 +42,6 @@ export const statsData = [
     label: "Publications",
   },
 ];
+
+
+export const cvLink = "https://drive.google.com/file/d/1sA-wIX5OH6n3uxXZNsIEgDwOGPobSVWc/view?usp=sharing";

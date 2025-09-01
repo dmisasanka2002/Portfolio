@@ -3,6 +3,7 @@ import { Typography, Badge, Button, Space } from 'antd';
 import { DownloadOutlined, ArrowRightOutlined } from '@ant-design/icons';
 import { Link } from 'react-scroll';
 import { motion } from 'framer-motion';
+import { cvLink } from '../data/aboutdata';
 
 const { Title, Paragraph } = Typography;
 
@@ -11,7 +12,7 @@ const AnimatedHeroSection = ({ darkMode }) => {
   const [displayText, setDisplayText] = useState('');
   const [wordIndex, setWordIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
-  const words = ['Mechanical Engineer', 'AI Specialist', 'Problem Solver', 'Innovative Thinker'];
+  const words = ['Mechanical Engineer', 'AI Specialist', 'Problem Solver', 'Innovative Thinker', 'Web Developer'];
   
   useEffect(() => {
     const typingSpeed = isDeleting ? 80 : 120;
@@ -189,7 +190,7 @@ const AnimatedHeroSection = ({ darkMode }) => {
               size="large"
               shape="round"
               icon={<DownloadOutlined />}
-              href="https://drive.google.com/file/d/1yGjkteuQgKs9mxtqVs7_d6RcDlYRcHGV/view?usp=drive_link"
+              href={cvLink}
               target="_blank"
               rel="noopener noreferrer"
               style={{
